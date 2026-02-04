@@ -34,6 +34,21 @@ const router = createRouter({
       name: "directivefor",
       component: () => import("@/views/DirectiveFor.vue"),
     },
+    {
+      path: "/forobj",
+      name: "directiveforobj",
+      component: () => import("@/views/DirectiveForObj.vue"),
+    },
+    {
+      path: "/if",
+      name: "directiveforobj",
+      component: () => import("@/views/DirectiveIf.vue"),
+    },
+    {
+      path: "/todo",
+      name: "directivetodo",
+      component: () => import("@/views/TodoDirective.vue"),
+    },
   ],
 });
 

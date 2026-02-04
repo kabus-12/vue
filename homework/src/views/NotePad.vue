@@ -8,14 +8,25 @@ let memo = ref();
 const save = ref(["예약하기", "자료 조사"]);
 // [미션 2] 함수 만들기
 // 1. 메모 추가 함수: 배열에 추가하고 입력창 비우기
-// 2. 메모 삭제 함수: Hint, splice 메소드 사용
 const addmemo = () => {
   save.value.push(memo.value);
   memo.value = "";
 };
+// 2. 메모 삭제 함수: Hint, splice 메소드 사용
 const deletememo = (idx) => {
   save.value.splice(idx, 1);
 };
+
+//splice
+//save = ref(["예약하기", "자료 조사"])
+/*
+1)중간에 값 추가
+save.splice(1,0,'운동가기')
+2)맨 첫번째 데이터 변경
+save.splice(0,1,'약속 참석')
+3)맨 첫번째 데이터 삭제
+save.splice(0,1)
+*/
 </script>
 
 <template>
@@ -30,7 +41,9 @@ const deletememo = (idx) => {
     <ul class="memo-list">
       <li v-for="(list, idx) in save">
         {{ list }}
-        <button class="del-btn" v-on:click="deletememo(idx)">삭제</button>
+        <button type="button" class="del-btn" v-on:click="deletememo(idx)">
+          삭제
+        </button>
       </li>
     </ul>
   </div>
