@@ -16,6 +16,11 @@ const router = createRouter({
     {
       path: "/one",
       name: "OneComponentApp",
+      component: () => import("@/views/OneComponentApp.vue"),
+    },
+    {
+      path: "/mulit",
+      name: "mulitComponentApp",
       component: () => import("@/views/MulitComponentApp.vue"),
     },
   ],
