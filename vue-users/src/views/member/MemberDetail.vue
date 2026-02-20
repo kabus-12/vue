@@ -2,18 +2,18 @@
 <script setup>
 import { RouterLink, useRoute } from "vue-router";
 import { onBeforeMount, ref } from "vue";
-const member = ref({});
+import { useMemberStore } from "@/stores/member";
+import { storeToRefs } from "pinia";
+
+const memberStore = useMemberStore();
+
+const { member } = storeToRefs(memberStore);
+const { findMemberByID } = memberStore;
 
 const route = useRoute(); //호출당한 정보
 const memId = route.params.id;
 // console.log(memId);
-const server = "https://jsonplaceholder.typicode.com";
-const findMemberByID = async (memberId) => {
-  let info = await fetch(`${server}/users/${memberId}`)
-    .then((res) => res.json())
-    .catch((err) => console.error(err));
-  member.value = info;
-};
+
 onBeforeMount(() => {
   findMemberByID(memId);
 });

@@ -2,21 +2,18 @@
 <script setup>
 import { RouterLink, useRouter } from "vue-router";
 const router = useRouter();
+import { useMemberStore } from "@/stores/member";
+import { storeToRefs } from "pinia";
+
+const memberStore = useMemberStore();
+
+const { members } = storeToRefs(memberStore);
+const { findMemberList } = memberStore;
+
 const goToDetail = (memberId) => {
   router.push({ name: "MemberDetail", params: { id: memberId } });
 };
 import { onBeforeMount, ref } from "vue";
-
-const server = "https://jsonplaceholder.typicode.com";
-
-const members = ref([]);
-const findMemberList = async () => {
-  const list = await fetch(`${server}/users`)
-    .then((res) => res.json())
-    .catch((err) => console.error(err));
-
-  members.value = list;
-};
 
 //Lifecycle Hook중 가장 먼저 실행
 //Lifecycle Hook은 마지막에 작성
